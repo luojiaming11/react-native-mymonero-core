@@ -21,6 +21,10 @@ import { makeNodeDisklet } from 'disklet'
 const disklet = makeNodeDisklet(join(__dirname, '../'))
 const tmp = join(__dirname, '../tmp')
 
+if (!existsSync(tmp)) {
+  mkdirSync(tmp, { recursive: true })
+}
+
 async function main(): Promise<void> {
   await downloadSources()
   await generateAndroidBuild()
